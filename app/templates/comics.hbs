@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="comics">
+    <h2>Comics list</h2>
+    <ul>
+      {{#each model as |comic|}}
+        <li class="{{if comic.scriptwriter 'comic-with-scriptwriter' 'comic-without-scriptwriter'}}">
+          {{comic.title}} by {{if comic.scriptwriter comic.scriptwriter "unknown scriptwriter"}}
+        </li>
+      {{else}}
+        Sorry, no comic found
+      {{/each}}
+    </ul>
+  </div>
+
+  <p id="no-selected-comic">
+    Please select on comic book for detailled information.
+  </p>
+</div>

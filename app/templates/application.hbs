@@ -4,20 +4,6 @@
     <h1 id="title">Comic books library</h1>
   </div>
 
-  <div class="row">
-    <div class="comics">
-      <ul>
-        {{#each model as |comic|}}
-          <li class="{{if comic.scriptwriter 'comic-with-scriptwriter' 'comic-without-scriptwriter'}}">
-            {{comic.title}} by {{if comic.scriptwriter comic.scriptwriter "unknown scriptwriter"}}
-          </li>
-        {{else}}
-          Sorry, no comic found
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-
   {{outlet}}
 
 </div>
