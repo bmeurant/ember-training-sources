@@ -5,8 +5,10 @@ const Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
-  this.route('comics');
+Router.map(function () {
+  this.route('comics', function() {
+    this.route('comic');
+  });
 });
 
 export default Router;
