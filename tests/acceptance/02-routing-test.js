@@ -191,7 +191,7 @@ test("02 - Routing - 09 - Should link to create route", function (assert) {
   visit('/comics').then(function () {
     let $comics = find(".comics ul > li");
     let comicsLength = $comics.length;
-    assert.ok(comicsLength >= 3, "Comics list displayed with more than 3 items");
+    assert.ok(comicsLength > 3, "Comics list displayed with more than 3 items");
 
     let $addComic = find(".add-comic");
     assert.equal($addComic.length, 1, "Create button exists");
