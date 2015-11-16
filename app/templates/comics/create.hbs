@@ -1,0 +1,27 @@
+<div class="selected-comic">
+  <form>
+    <div class="buttons">
+      <button type="submit" class="btn-submit"></button>
+      <button type="reset" class="btn-cancel"></button>
+    </div>
+    <div class="title">
+      {{input id="title" type="text" value=model.title}}
+    </div>
+
+    <div class="description">
+      <div class="scriptwriter">
+        <label for="scriptwriter">Scriptwriter</label>
+        <span
+            class="control">{{input id="scriptwriter" type="text" value=model.scriptwriter required="required"}}</span>
+      </div>
+      <div class="illustrator">
+        <label for="illustrator">Illustrator</label>
+        <span class="control">{{input id="illustrator" type="text" value=model.illustrator}}</span>
+      </div>
+      <div class="publisher">
+        <label for="publisher">Publisher</label>
+        <span class="control">{{input id="publisher" type="text" value=model.publisher}}</span>
+      </div>
+    </div>
+  </form>
+</div>
