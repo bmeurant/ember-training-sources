@@ -35,7 +35,7 @@ let akira = Comic.create({
 
 const COMICS = [blackSad, calvinAndHobbes, akira];
 
-moduleFor('route:comics/comic', 'Unit | Route | comics/comic', {
+moduleFor('route:comic', 'Unit | Route | comic', {
   beforeEach() {
     this.subject().modelFor = function () {
       return COMICS;

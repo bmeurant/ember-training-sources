@@ -4,7 +4,7 @@
     <ul>
       {{#each model as |comic|}}
         <li class="{{if comic.scriptwriter 'comic-with-scriptwriter' 'comic-without-scriptwriter'}}">
-          {{#link-to "comics.comic" comic}}
+          {{#link-to "comic" comic}}
             {{comic.title}} by {{if comic.scriptwriter comic.scriptwriter "unknown scriptwriter"}}
           {{/link-to}}
         </li>
