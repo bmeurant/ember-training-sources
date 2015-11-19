@@ -10,17 +10,9 @@ import {
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import comicsRoute from 'ember-training/routes/comics';
-
-const Comic = Object.extend({
-  slug: '',
-  title: '',
-  scriptwriter: '',
-  illustrator: '',
-  publisher: ''
-});
+import Comic from 'ember-training/models/comic';
 
 const blackSad = Comic.create({
-  slug: 'blacksad',
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
   illustrator: 'Juanjo Guarnido',
@@ -28,7 +20,6 @@ const blackSad = Comic.create({
 });
 
 const calvinAndHobbes = Comic.create({
-  slug: 'calvin-and-hobbes',
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
   illustrator: 'Bill Watterson',
@@ -36,7 +27,6 @@ const calvinAndHobbes = Comic.create({
 });
 
 const akira = Comic.create({
-  slug: 'akira',
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',
   illustrator: 'Katsuhiro Otomo',
