@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
-  slug: '',
+  slug: function() {
+    return this.get('title').dasherize();
+  }.property('title'),
   title: '',
   scriptwriter: '',
   illustrator: '',
