@@ -1,8 +1,12 @@
 <div class="row">
   <div class="comics">
     <h2>Comics list</h2>
+
+    {{input type=text value=filter class="filter"}}
+    <button {{action "sort"}} class="sort {{if sortAsc 'sort-asc' 'sort-desc'}}"></button>
+
     <ul>
-      {{#each model as |comic|}}
+      {{#each sortedComics as |comic|}}
         <li class="{{if comic.scriptwriter 'comic-with-scriptwriter' 'comic-without-scriptwriter'}}">
           {{#link-to "comic" comic}}
             {{comic.title}} by {{if comic.scriptwriter comic.scriptwriter "unknown scriptwriter"}}
@@ -13,6 +17,8 @@
       {{/each}}
     </ul>
     {{link-to '' 'comics.create' class="add-comic"}}
+
+    <span class="comics-number">Number of comics: {{sortedComics.length}}</span>
   </div>
 
   {{outlet}}
