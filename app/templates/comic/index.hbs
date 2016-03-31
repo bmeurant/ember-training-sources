@@ -3,6 +3,7 @@
     {{link-to "" 'comic.edit' model class="btn-edit"}}
   </div>
   <h3>{{model.title}}</h3>
+  {{image-cover name=model.slug}}
   <dl>
     <dt>scriptwriter</dt>
     <dd>{{model.scriptwriter}} </dd>
