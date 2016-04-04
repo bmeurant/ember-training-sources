@@ -5,7 +5,10 @@ export default Component.extend({
   classNames: 'btn-fav',
   classNameBindings: 'selected',
 
-  click: function () {
+  click() {
     this.toggleProperty('selected');
+    if (this.get('favorize')) {
+      this.get('favorize')();
+    }
   }
 });
