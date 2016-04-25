@@ -24,6 +24,8 @@ export default function() {
   this.put('/comics/:id');
   this.post('/comics');
 
+  this.get('/albums/:id');
+
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
