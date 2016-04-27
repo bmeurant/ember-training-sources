@@ -1,18 +1,51 @@
 {
   "comics": [
     {
-      "id": 1,
-      "title": "Blacksad",
-      "scriptwriter": "Juan Diaz Canales",
-      "illustrator": "Juanjo Guarnido",
-      "publisher": "Dargaud",
-      "albums": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
+      "comic": {
+        "title": "Blacksadqq",
+        "scriptwriter": "Juan Diaz Canales",
+        "illustrator": "Juanjo Guarnido",
+        "publisher": "Dargaud",
+        "isFavorite": false,
+        "albums": [
+          {
+            "id": "1",
+            "title": "Somewhere Within the Shadows",
+            "publicationDate": null,
+            "number": 1,
+            "coverName": "blacksad-1.jpg"
+          },
+          {
+            "id": "2",
+            "title": "Arctic-Nation",
+            "publicationDate": null,
+            "number": 2,
+            "coverName": "blacksad-2.jpg"
+          },
+          {
+            "id": "3",
+            "title": "Red Soul",
+            "publicationDate": null,
+            "number": 3,
+            "coverName": "blacksad-3.jpg"
+          },
+          {
+            "id": "4",
+            "title": "A Silent Hell",
+            "publicationDate": null,
+            "number": 4,
+            "coverName": "blacksad-4.jpg"
+          },
+          {
+            "id": "5",
+            "title": "Amarillo",
+            "publicationDate": null,
+            "number": 5,
+            "coverName": "blacksad-5.jpg"
+          }
+        ]
+      },
+      "id": 1
     },
     {
       "id": 2,
@@ -27,6 +60,28 @@
       "scriptwriter": "Katsuhiro Otomo",
       "illustrator": "Katsuhiro Otomo",
       "publisher": "Epic Comics"
+    },
+    {
+      "comic": {
+        "title": "new",
+        "scriptwriter": null,
+        "illustrator": null,
+        "publisher": null,
+        "isFavorite": false,
+        "albums": []
+      },
+      "id": 4
+    },
+    {
+      "comic": {
+        "title": "newaaa",
+        "scriptwriter": null,
+        "illustrator": null,
+        "publisher": null,
+        "isFavorite": false,
+        "albums": []
+      },
+      "id": 5
     }
   ],
   "albums": [
