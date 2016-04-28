@@ -3,7 +3,16 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import Comic from 'ember-training/models/comic';
+import { setupMirage } from 'ember-cli-mirage/test-support';
+
+let Comic = Ember.Object.extend({
+  slug: '',
+  title: '',
+  scriptwriter: '',
+  illustrator: '',
+  publisher: '',
+  isFavorite: false
+});
 
 let akira = Comic.create({
   title: 'Akira',
@@ -15,6 +24,7 @@ let akira = Comic.create({
 
 module('Integration | Component | fav btn', function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   test('renders fav-btn', async function(assert) {
   

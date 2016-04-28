@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import BaseSerializer from './application';
-import { isArray } from '@ember/array';
+import { isArray } from "@ember/array"
 
 export default BaseSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {

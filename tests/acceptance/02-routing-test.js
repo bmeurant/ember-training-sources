@@ -1,5 +1,3 @@
-import Object from '@ember/object';
-
 import {
   visit,
   find,
@@ -9,42 +7,20 @@ import {
 } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import comicsRoute from 'ember-training/routes/comics';
-import Comic from 'ember-training/models/comic';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
-const blackSad = Comic.create({
-  title: 'Blacksad',
-  scriptwriter: 'Juan Diaz Canales',
-  illustrator: 'Juanjo Guarnido',
-  publisher: 'Dargaud'
-});
-
-const calvinAndHobbes = Comic.create({
-  title: 'Calvin and Hobbes',
-  scriptwriter: 'Bill Watterson',
-  illustrator: 'Bill Watterson',
-  publisher: 'Andrews McMeel Publishing'
-});
-
-const akira = Comic.create({
-  title: 'Akira',
-  scriptwriter: 'Katsuhiro Otomo',
-  illustrator: 'Katsuhiro Otomo',
-  publisher: 'Epic Comics'
-});
-
-const COMICS = [akira, blackSad, calvinAndHobbes];
+const setup = function(hooks) {
+  setupMirage(hooks);
+  hooks.beforeEach(function() {
+    window.confirm = function() {
+      return true;
+    };
+  });
+}
 
 module('02 - Routing Acceptance Tests', function(hooks) {
   setupApplicationTest(hooks);
-
-  hooks.beforeEach(function() {
-    comicsRoute.reopen({
-      model: function () {
-        return COMICS;
-      }
-    });
-  });
+  setup(hooks);
 
   test("02 - Routing - 01 - Should display second level title", async function (assert) {
     assert.expect(4);
@@ -55,7 +31,8 @@ module('02 - Routing Acceptance Tests', function(hooks) {
   
     let $pageHeader = find('.application .header');
     assert.notEqual($pageHeader, null, "Page contains a page header");
-  
+
+ 
     let $title = find(".application .comics .comics-title");
     assert.notEqual($title, null, "Page contains a .comics-title element");
     assert.equal($title.textContent, "Comics list", "Subtitle is correct");
@@ -87,13 +64,13 @@ module('02 - Routing Acceptance Tests', function(hooks) {
 
     let $title = find(".comic-title");
     assert.notEqual($title, null, "Comic title exists");
-    assert.ok($title.textContent.indexOf(akira.title) >= 0, "Comic title is correct");
+    assert.ok($title.textContent.indexOf("Akira") >= 0, "Comic title is correct");
 
     let $props = findAll(".comic-description > .comic-value");
     assert.equal($props.length, 3, "Comic properties exist");
-    assert.ok($props[0].textContent.indexOf(akira.scriptwriter) >= 0, "Comic scriptwriter is correct");
-    assert.ok($props[1].textContent.indexOf(akira.illustrator) >= 0, "Comic illustrator is correct");
-    assert.ok($props[2].textContent.indexOf(akira.publisher) >= 0, "Comic publisher is correct");
+    assert.ok($props[0].textContent.indexOf('Katsuhiro Otomo') >= 0, "Comic scriptwriter is correct");
+    assert.ok($props[1].textContent.indexOf('Katsuhiro Otomo') >= 0, "Comic illustrator is correct");
+    assert.ok($props[2].textContent.indexOf('Epic Comics') >= 0, "Comic publisher is correct");
   });
   
   test("02 - Routing - 05 - Should display links", async function (assert) {
@@ -105,13 +82,13 @@ module('02 - Routing Acceptance Tests', function(hooks) {
     assert.notEqual($comics, null, "Comics list exists");
     assert.ok($comics.length >= 3, "Comics are displayed");
 
-    assert.ok($comics[0].href.indexOf('/comics/' + akira.get('slug')) >= 0, "akira url is correct");
+    assert.ok($comics[0].href.indexOf('/comics/akira') >= 0, "akira url is correct");
     assert.ok($comics[0].classList.contains('active'), "akira url is active");
 
-    assert.ok($comics[1].href.indexOf('/comics/' + blackSad.get('slug')) >= 0, "blackSad url is correct");
+    assert.ok($comics[1].href.indexOf('/comics/blacksad') >= 0, "blackSad url is correct");
     assert.notOk($comics[1].classList.contains('active'), "blackSad url is not active");
 
-    assert.ok($comics[2].href.indexOf('/comics/' + calvinAndHobbes.get('slug')) >= 0, "calvinAndHobbes url is correct");
+    assert.ok($comics[2].href.indexOf('/comics/calvin-and-hobbes') >= 0, "calvinAndHobbes url is correct");
     assert.notOk($comics[2].classList.contains('active'), "calvinAndHobbes url is not active");
   });
   
@@ -129,10 +106,10 @@ module('02 - Routing Acceptance Tests', function(hooks) {
     let $props = findAll(".comic form input");
     assert.equal($props.length, 4, "Comic properties exist");
 
-    assert.ok($props[0].value.indexOf(akira.title) >= 0, "Comic title is correct");
-    assert.ok($props[1].value.indexOf(akira.scriptwriter) >= 0, "Comic scriptwriter is correct");
-    assert.ok($props[2].value.indexOf(akira.illustrator) >= 0, "Comic illustrator is correct");
-    assert.ok($props[3].value.indexOf(akira.publisher) >= 0, "Comic publisher is correct");
+    assert.ok($props[0].value.indexOf('Akira') >= 0, "Comic title is correct");
+    assert.ok($props[1].value.indexOf('Katsuhiro Otomo') >= 0, "Comic scriptwriter is correct");
+    assert.ok($props[2].value.indexOf('Katsuhiro Otomo') >= 0, "Comic illustrator is correct");
+    assert.ok($props[3].value.indexOf('Epic Comics') >= 0, "Comic publisher is correct");
   });
   
   test("02 - Routing - 07 - Should link to edit route", async function (assert) {
@@ -166,7 +143,7 @@ module('02 - Routing Acceptance Tests', function(hooks) {
 
     let $props = findAll(".comic form input");
     assert.equal($props.length, 4, "Comic properties exist");
-    assert.equal($props[0].value.length, 0, "Comic title is empty");
+    assert.equal($props[0].value.length, 3, "Comic title is default");
     assert.equal($props[1].value.length, 0, "Comic scriptwriter is empty");
     assert.equal($props[2].value.length, 0, "Comic illustrator is empty");
     assert.equal($props[3].value.length, 0, "Comic publisher is empty");
@@ -182,7 +159,7 @@ module('02 - Routing Acceptance Tests', function(hooks) {
 
     let $comics = findAll(".comics .comics-list > .comics-list-item");
     let comicsLength = $comics.length;
-    assert.ok(comicsLength > 3, "Comics list displayed with more than 3 items");
+    assert.ok(comicsLength === 3, "Comics list displayed with exactly 3 items");
   
     let $addComic = find(".add-comic");
     assert.notEqual($addComic, null, "Create button exists");
@@ -196,5 +173,4 @@ module('02 - Routing Acceptance Tests', function(hooks) {
     $comics = find(".comics .comics-list > .comics-list-item");
     assert.notEqual($comics, comicsLength + 1, "Comics list displayed with one supplementary item");
   });
-
 });
