@@ -1,19 +1,8 @@
 import Ember from "ember";
-import { module, test } from 'qunit';
-import startApp from '../helpers/start-app';
-import comicsRoute from 'ember-training/routes/comics';
+import { test } from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
 
-let application;
-
-let Comic = Ember.Object.extend({
-  slug: '',
-  title: '',
-  scriptwriter: '',
-  illustrator: '',
-  publisher: ''
-});
-
-let blackSad = Comic.create({
+const blackSad = Ember.Object.create({
   slug: 'blacksad',
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
@@ -21,7 +10,7 @@ let blackSad = Comic.create({
   publisher: 'Dargaud'
 });
 
-let calvinAndHobbes = Comic.create({
+const calvinAndHobbes = Ember.Object.create({
   slug: 'calvin-and-hobbes',
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
@@ -29,7 +18,7 @@ let calvinAndHobbes = Comic.create({
   publisher: 'Andrews McMeel Publishing'
 });
 
-let akira = Comic.create({
+const akira = Ember.Object.create({
   slug: 'akira',
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',
@@ -37,25 +26,7 @@ let akira = Comic.create({
   publisher: 'Epic Comics'
 });
 
-const COMICS = [akira, blackSad, calvinAndHobbes];
-
-let setupApp = function () {
-  comicsRoute.reopen({
-    model: function () {
-      return COMICS;
-    }
-  });
-  application = startApp();
-};
-
-module('02 - Routing Acceptance Tests', {
-  beforeEach() {
-    setupApp();
-  },
-  afterEach() {
-    Ember.run(application, 'destroy');
-  }
-});
+moduleForAcceptance('02 - Routing Acceptance Tests');
 
 test("02 - Routing - 01 - Should display second level title", function (assert) {
   assert.expect(4);
@@ -97,13 +68,13 @@ test("02 - Routing - 04 - Should display the comic detail", function (assert) {
 
     let $title = $selectedComic.find("h3");
     assert.equal($title.length, 1, "Comic title exists");
-    assert.ok($title.text().indexOf(akira.title) >= 0, "Comic title is correct");
+    assert.ok($title.text().indexOf(akira.get('title')) >= 0, "Comic title is correct");
 
     let $props = $selectedComic.find("dl > dd");
     assert.equal($props.length, 3, "Comic properties exist");
-    assert.ok($($props.get(0)).text().indexOf(akira.scriptwriter) >= 0, "Comic scriptwriter is correct");
-    assert.ok($($props.get(1)).text().indexOf(akira.illustrator) >= 0, "Comic illustrator is correct");
-    assert.ok($($props.get(2)).text().indexOf(akira.publisher) >= 0, "Comic publisher is correct");
+    assert.ok($($props.get(0)).text().indexOf(akira.get('scriptwriter')) >= 0, "Comic scriptwriter is correct");
+    assert.ok($($props.get(1)).text().indexOf(akira.get('illustrator')) >= 0, "Comic illustrator is correct");
+    assert.ok($($props.get(2)).text().indexOf(akira.get('publisher')) >= 0, "Comic publisher is correct");
   });
 });
 
@@ -175,7 +146,7 @@ test("02 - Routing - 08 - Should display create route", function (assert) {
 
     let $props = $selectedComic.find("input");
     assert.equal($props.length, 4, "Comic properties exist");
-    assert.equal($($props.get(0)).val().length, 0, "Comic title is empty");
+    assert.equal($($props.get(0)).val().length, 3, "Comic title is default value");
     assert.equal($($props.get(1)).val().length, 0, "Comic scriptwriter is empty");
     assert.equal($($props.get(2)).val().length, 0, "Comic illustrator is empty");
     assert.equal($($props.get(3)).val().length, 0, "Comic publisher is empty");
@@ -191,7 +162,7 @@ test("02 - Routing - 09 - Should link to create route", function (assert) {
   visit('/comics').then(function () {
     let $comics = find(".comics ul > li");
     let comicsLength = $comics.length;
-    assert.ok(comicsLength > 3, "Comics list displayed with more than 3 items");
+    assert.ok(comicsLength === 3, "Comics list displayed with exactly 3 items");
 
     let $addComic = find(".add-comic");
     assert.equal($addComic.length, 1, "Create button exists");

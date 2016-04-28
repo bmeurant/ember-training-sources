@@ -1,4 +1,4 @@
-import BaseAdapter from './application'
+import BaseAdapter from './application';
 
 export default BaseAdapter.extend({
 

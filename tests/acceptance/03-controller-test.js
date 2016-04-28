@@ -1,60 +1,11 @@
-import Ember from "ember";
-import { module, test } from 'qunit';
-import startApp from '../helpers/start-app';
-import comicsRoute from 'ember-training/routes/comics';
-import Comic from 'ember-training/models/comic';
+import { test } from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
 
-let application;
-
-let blackSad = Comic.create({
-  slug: 'blacksad',
-  title: 'Blacksad',
-  scriptwriter: 'Juan Diaz Canales',
-  illustrator: 'Juanjo Guarnido',
-  publisher: 'Dargaud'
-});
-
-let calvinAndHobbes = Comic.create({
-  slug: 'calvin-and-hobbes',
-  title: 'Calvin and Hobbes',
-  scriptwriter: 'Bill Watterson',
-  illustrator: 'Bill Watterson',
-  publisher: 'Andrews McMeel Publishing'
-});
-
-let akira = Comic.create({
-  slug: 'akira',
-  title: 'Akira',
-  scriptwriter: 'Katsuhiro Otomo',
-  illustrator: 'Katsuhiro Otomo',
-  publisher: 'Epic Comics'
-});
-
-const COMICS = [akira, blackSad, calvinAndHobbes];
-
-let setupApp = function () {
-  comicsRoute.reopen({
-    model: function () {
-      return COMICS;
-    },
-    modelFor() {
-      return COMICS ;
-    }
-  });
-
-  window.confirm = function() {
-    return true;
-  };
-
-  application = startApp();
-};
-
-module('03 - Controller Acceptance Tests', {
+moduleForAcceptance('03 - Controller Acceptance Tests', {
   beforeEach() {
-    setupApp();
-  },
-  afterEach() {
-    Ember.run(application, 'destroy');
+    window.confirm = function() {
+      return true;
+    };
   }
 });
 
@@ -74,9 +25,6 @@ test("03 - Controller - 01 - Should save on edit submit", function (assert) {
     andThen(function() {
       assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
       assert.ok(find(".selected-comic h3").text().indexOf(newTitle) >= 0, "Title modified");
-
-      // Force reinit because of some unconsistency
-      COMICS[0].set('title', "Akira");
     });
   });
 });
@@ -118,11 +66,6 @@ test("03 - Controller - 03 - Should save on create submit", function (assert) {
     andThen(function() {
       assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
       assert.ok(find(".selected-comic h3").text().indexOf(newTitle) >= 0, "Title modified");
-
-      // Force reinit because of some unconsistency
-      if (COMICS.length === 4) {
-        COMICS.removeAt(3);
-      }
     });
   });
 });
@@ -246,9 +189,6 @@ test("03 - Controller - 08 - Should abort edit after confirm false", function (a
       assert.equal(currentRouteName(), 'comic.edit', "Route name is correct");
       assert.ok(find(".selected-comic .title input").val().indexOf(newTitle) >= 0, "Title still modified");
       assert.ok($(find(".comics ul li a").get(2)).text().indexOf(newTitle) >= 0, "List still modified");
-
-      // Force reinit because of some unconsistency
-      COMICS[0].set('title', "Akira");
     });
   });
 });
@@ -300,11 +240,6 @@ test("03 - Controller - 10 - Should call willTransition on create despite an old
     andThen(function() {
       assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
       assert.equal(find(".comics ul li a").length, 4, "Creation cancelled");
-
-      // Force reinit because of some unconsistency
-      if (COMICS.length === 4) {
-        COMICS.removeAt(3);
-      }
     });
   });
 });
@@ -356,11 +291,6 @@ test("03 - Controller - 12 - Should abort create after confirm false", function 
       assert.equal(currentRouteName(), 'comics.create', "Route name is correct");
       assert.ok(find(".selected-comic .title input").val().indexOf(newTitle) >= 0, "Title still modified");
       assert.equal(find(".comics ul li a").length, 4, "Creation not cancelled");
-
-      // Force reinit because of some unconsistency
-      if (COMICS.length === 4) {
-        COMICS.removeAt(3);
-      }
     });
   });
 });
