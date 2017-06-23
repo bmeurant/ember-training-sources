@@ -1,4 +1,4 @@
-let blackSad = {
+const blackSad = {
   id: 1,
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
@@ -6,7 +6,7 @@ let blackSad = {
   publisher: 'Dargaud'
 };
 
-let calvinAndHobbes = {
+const calvinAndHobbes = {
   id: 2,
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
@@ -14,7 +14,7 @@ let calvinAndHobbes = {
   publisher: 'Andrews McMeel Publishing'
 };
 
-let akira = {
+const akira = {
   id: 3,
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',

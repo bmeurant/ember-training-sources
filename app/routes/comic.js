@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   },
   actions: {
     favorize () {
-      let model = this.modelFor(this.routeName);
+      const model = this.modelFor(this.routeName);
       Ember.Logger.debug(model.get('slug'), '- favorite:', model.get('isFavorite'));
     }
   }

@@ -19,7 +19,7 @@ export default Ember.testing ? DS.RESTSerializer : DS.RESTSerializer.extend({
     },
 
     normalizeArrayResponse(store, primaryModelClass, hash, id, requestType) {
-      let newHash = {};
+      const newHash = {};
       newHash[primaryModelClass.modelName] = hash;
       return this._super(store, primaryModelClass, newHash, id, requestType);
     }

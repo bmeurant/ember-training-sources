@@ -14,13 +14,13 @@ test("03 - Controller - 01 - Should save on edit submit", function (assert) {
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comic form .btn-submit");
     andThen(() => {
@@ -35,13 +35,13 @@ test("03 - Controller - 02 - Should cancel on edit reset", function (assert) {
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comic form .btn-cancel");
     andThen(() => {
@@ -57,13 +57,13 @@ test("03 - Controller - 03 - Should save on create submit", function (assert) {
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comic form .btn-submit");
     andThen(() => {
@@ -78,13 +78,13 @@ test("03 - Controller - 04 - Should reinit list on create reset", function (asse
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comic form .btn-cancel");
     andThen(() => {
@@ -99,13 +99,13 @@ test("03 - Controller - 05 - Should cancel edit on transition", function (assert
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     visit('/comics/akira');
     andThen(() => {
@@ -121,10 +121,10 @@ test("03 - Controller - 06 - Should call willTransition on edit despite an old s
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
     // edit the comic and discard clicking on another comic
@@ -159,13 +159,13 @@ test("03 - Controller - 07 - Should cancel edit after confirm true", function (a
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comics .comics-list > .comics-list-item:last-child > a");
     andThen(() => {
@@ -186,13 +186,13 @@ test("03 - Controller - 08 - Should abort edit after confirm false", function (a
 
   visit('/comics/akira/edit');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "a new value";
+    const newTitle = "a new value";
     fillIn(".comic form #title", newTitle);
     visit('/comics/akira');
     andThen(() => {
@@ -208,13 +208,13 @@ test("03 - Controller - 09 - Should cancel create on transition", function (asse
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comics .comics-list > .comics-list-item:first-child > a");
     andThen(() => {
@@ -229,10 +229,10 @@ test("03 - Controller - 10 - Should call willTransition on create despite an old
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
     // edit the comic and discard clicking on another comic
@@ -266,13 +266,13 @@ test("03 - Controller - 11 - Should cancel create after confirm true", function 
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comics .comics-list > .comics-list-item:first-child > a");
     andThen(() => {
@@ -292,13 +292,13 @@ test("03 - Controller - 12 - Should abort create after confirm false", function 
 
   visit('/comics/create');
   andThen(() => {
-    let $selectedComic = find(".comic");
+    const $selectedComic = find(".comic");
     assert.equal($selectedComic.length, 1, "Current selected comics zone is displayed");
 
-    let $form = $selectedComic.find("form");
+    const $form = $selectedComic.find("form");
     assert.equal($form.length, 1, "Comic form exists");
 
-    let newTitle = "new value";
+    const newTitle = "new value";
     fillIn(".comic form #title", newTitle);
     click(".comics .comics-list > .comics-list-item:first-child > a");
     andThen(() => {
@@ -314,8 +314,8 @@ test("03 - Controller - 13 - Should filter", function (assert) {
 
   visit('/comics');
   andThen(() => {
-    let $comics = find(".comics .comics-list > .comics-list-item");
-    let comicsLength = $comics.length;
+    const $comics = find(".comics .comics-list > .comics-list-item");
+    const comicsLength = $comics.length;
     assert.equal(comicsLength, 3, "Comics list displayed with 3 items");
 
     assert.equal(find("input").length, 1, "filter input exists");
@@ -340,8 +340,8 @@ test("03 - Controller - 14 - Should sort", function (assert) {
 
   visit('/comics');
   andThen(() => {
-    let $comics = find(".comics .comics-list > .comics-list-item");
-    let comicsLength = $comics.length;
+    const $comics = find(".comics .comics-list > .comics-list-item");
+    const comicsLength = $comics.length;
     assert.equal(comicsLength, 3, "Comics list displayed with 3 items");
 
     assert.equal(find(".btn-sort").length, 1, "sort button exists");

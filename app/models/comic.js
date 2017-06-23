@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   slug: function () {
-    let title = this.get('title') || 'new';
+    const title = this.get('title') || 'new';
     return title.dasherize();
   }.property('title'),
 

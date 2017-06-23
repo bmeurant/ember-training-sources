@@ -9,7 +9,7 @@ const NO_COMICS = [];
 const MULTIPLE_NO_SCRIPTWRITERS = [{title: "Blacksad"}, {title: "Calvin and Hobbes"}];
 const MIXED_SCRIPTWRITERS = [{title: "Blacksad"}, {title: "Calvin and Hobbes", scriptwriter: "Bill Watterson"}];
 
-let setupApp = function (contentType) {
+function setupApp(contentType) {
   appRoute.reopen({
     model: function () {
       switch (contentType) {
@@ -23,7 +23,7 @@ let setupApp = function (contentType) {
     }
   });
   application = startApp();
-};
+}
 
 module('01 - Templates Acceptance Tests', {
   afterEach() {
@@ -38,10 +38,10 @@ skip("01 - Templates - 01 - Should display comics", function (assert) {
 
   visit('/');
   andThen(() => {
-    let $comics = find('.comics ');
+    const $comics = find('.comics ');
     assert.equal($comics.length, 1, "Page contains the comics collection");
 
-    let $comicItems = $comics.find('.comics-list > .comics-list-item');
+    const $comicItems = $comics.find('.comics-list > .comics-list-item');
     assert.equal($comicItems.length, 2, "Two items found");
 
     assert.ok($comicItems.eq(0).text().indexOf(MULTIPLE_NO_SCRIPTWRITERS[0].title) >= 0, "First comic title is correct");
@@ -56,10 +56,10 @@ skip("01 - Templates - 02 - Should display scriptwriter if exists", function (as
 
   visit('/');
   andThen(() => {
-    let $comics = find('.comics ');
+    const $comics = find('.comics ');
     assert.equal($comics.length, 1, "Page contains the comics collection");
 
-    let $comicItems = $comics.find('.comics-list > .comics-list-item');
+    const $comicItems = $comics.find('.comics-list > .comics-list-item');
     assert.equal($comicItems.length, 2, "Two items found");
 
     assert.ok($comicItems.eq(0).text().indexOf(MIXED_SCRIPTWRITERS[0].title) >= 0, "First comic title is correct");
@@ -74,10 +74,10 @@ skip("01 - Templates - 03 - Should change class if no scriptwriter", function (a
 
   visit('/');
   andThen(() => {
-    let $comics = find('.comics ');
+    const $comics = find('.comics ');
     assert.equal($comics.length, 1, "Page contains the comics collection");
 
-    let $comicItems = $comics.find('.comics-list > .comics-list-item');
+    const $comicItems = $comics.find('.comics-list > .comics-list-item');
     assert.equal($comicItems.length, 2, "Two items found");
 
     assert.ok($comicItems.eq(0).hasClass("comic-without-scriptwriter"), "First comic class is correct");
@@ -92,7 +92,7 @@ skip("01 - Templates - 04 - Should display message if empty", function (assert) 
 
   visit('/');
   andThen(() => {
-    let $comics = find('.comics ');
+    const $comics = find('.comics ');
     assert.equal($comics.length, 1, "Page contains the comics collection");
 
     assert.equal($comics.find('.comics-list > .comics-list-item').length, 0, "No item found");

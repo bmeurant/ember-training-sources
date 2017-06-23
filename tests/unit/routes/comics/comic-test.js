@@ -1,7 +1,7 @@
 import Ember from "ember";
 import { moduleFor, test } from 'ember-qunit';
 
-let Comic = Ember.Object.extend({
+const Comic = Ember.Object.extend({
   slug: '',
   title: '',
   scriptwriter: '',
@@ -9,7 +9,7 @@ let Comic = Ember.Object.extend({
   publisher: ''
 });
 
-let blackSad = Comic.create({
+const blackSad = Comic.create({
   slug: 'blacksad',
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
@@ -17,7 +17,7 @@ let blackSad = Comic.create({
   publisher: 'Dargaud'
 });
 
-let calvinAndHobbes = Comic.create({
+const calvinAndHobbes = Comic.create({
   slug: 'calvin-and-hobbes',
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
@@ -25,7 +25,7 @@ let calvinAndHobbes = Comic.create({
   publisher: 'Andrews McMeel Publishing'
 });
 
-let akira = Comic.create({
+const akira = Comic.create({
   slug: 'akira',
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',
@@ -44,16 +44,16 @@ moduleFor('route:comics/comic', 'Unit | Route | comics/comic', {
 });
 
 test('it exists', function (assert) {
-  let route = this.subject();
+  const route = this.subject();
   assert.ok(route);
 });
 
 
 test('model() should retrieve existing slug', function (assert) {
-  let route = this.subject();
+  const route = this.subject();
 
-  let params = {comic_slug: 'blacksad'};
-  let model = route.model(params);
+  const params = {comic_slug: 'blacksad'};
+  const model = route.model(params);
 
   assert.equal(model, blackSad, "model with existing slug retrieved");
 });
@@ -61,8 +61,8 @@ test('model() should retrieve existing slug', function (assert) {
 test('model() should throw error if slug not found', function (assert) {
   assert.expect(1);
 
-  let route = this.subject();
-  let params = {comic_slug: 'wrong'};
+  const route = this.subject();
+  const params = {comic_slug: 'wrong'};
 
   try {
     route.model(params);

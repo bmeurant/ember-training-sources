@@ -3,10 +3,10 @@ import Mirage from 'ember-cli-mirage';
 export default function() {
   
   this.get('/comics', ({comics}, request) => {
-    let slug = request.queryParams.slug;
+    const slug = request.queryParams.slug;
 
     if (slug) {
-      let foundComic = comics.where({title: slug.classify()}).models[0];
+      const foundComic = comics.where({title: slug.classify()}).models[0];
       if (foundComic) {
         return foundComic;
       } else {

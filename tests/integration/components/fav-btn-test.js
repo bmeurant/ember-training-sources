@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-let Comic = Ember.Object.extend({
+const Comic = Ember.Object.extend({
   slug: '',
   title: '',
   scriptwriter: '',
@@ -11,7 +11,7 @@ let Comic = Ember.Object.extend({
   isFavorite: false
 });
 
-let akira = Comic.create({
+const akira = Comic.create({
   slug: 'akira',
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',
