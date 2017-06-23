@@ -31,7 +31,7 @@ module('01 - Templates Acceptance Tests', {
   }
 });
 
-skip("01 - Templates - 01 - Should display comics", function (assert) {
+skip("01 - Templates - 01 - Should display comics", assert => {
   assert.expect(4);
 
   setupApp();
@@ -49,7 +49,7 @@ skip("01 - Templates - 01 - Should display comics", function (assert) {
   });
 });
 
-skip("01 - Templates - 02 - Should display scriptwriter if exists", function (assert) {
+skip("01 - Templates - 02 - Should display scriptwriter if exists", assert => {
   assert.expect(4);
 
   setupApp('MIXED');
@@ -67,7 +67,7 @@ skip("01 - Templates - 02 - Should display scriptwriter if exists", function (as
   });
 });
 
-skip("01 - Templates - 03 - Should change class if no scriptwriter", function (assert) {
+skip("01 - Templates - 03 - Should change class if no scriptwriter", assert => {
   assert.expect(4);
 
   setupApp('MIXED');
@@ -85,7 +85,7 @@ skip("01 - Templates - 03 - Should change class if no scriptwriter", function (a
   });
 });
 
-skip("01 - Templates - 04 - Should display message if empty", function (assert) {
+skip("01 - Templates - 04 - Should display message if empty", assert => {
   assert.expect(3);
 
   setupApp('EMPTY');

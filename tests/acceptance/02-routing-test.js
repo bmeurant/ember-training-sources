@@ -28,7 +28,7 @@ const akira = Ember.Object.create({
 
 moduleForAcceptance('02 - Routing Acceptance Tests');
 
-test("02 - Routing - 01 - Should display second level title", function (assert) {
+test("02 - Routing - 01 - Should display second level title", assert => {
   assert.expect(4);
 
   visit('/comics');
@@ -44,7 +44,7 @@ test("02 - Routing - 01 - Should display second level title", function (assert) 
   });
 });
 
-test("02 - Routing - 02 - Should display text on comics/", function (assert) {
+test("02 - Routing - 02 - Should display text on comics/", assert => {
   assert.expect(1);
 
   visit('/comics');
@@ -53,7 +53,7 @@ test("02 - Routing - 02 - Should display text on comics/", function (assert) {
   });
 });
 
-test("02 - Routing - 03 - Should display single comic zone", function (assert) {
+test("02 - Routing - 03 - Should display single comic zone", assert => {
   assert.expect(1);
 
   visit('/comics/akira');
@@ -62,7 +62,7 @@ test("02 - Routing - 03 - Should display single comic zone", function (assert) {
   });
 });
 
-test("02 - Routing - 04 - Should display the comic detail", function (assert) {
+test("02 - Routing - 04 - Should display the comic detail", assert => {
   assert.expect(7);
 
   visit('/comics/akira');
@@ -82,7 +82,7 @@ test("02 - Routing - 04 - Should display the comic detail", function (assert) {
   });
 });
 
-test("02 - Routing - 05 - Should display links", function (assert) {
+test("02 - Routing - 05 - Should display links", assert => {
   assert.expect(7);
 
   visit('/comics/akira');
@@ -101,7 +101,7 @@ test("02 - Routing - 05 - Should display links", function (assert) {
   });
 });
 
-test("02 - Routing - 06 - Should display edit route", function (assert) {
+test("02 - Routing - 06 - Should display edit route", assert => {
   assert.expect(7);
 
   visit('/comics/akira/edit');
@@ -121,7 +121,7 @@ test("02 - Routing - 06 - Should display edit route", function (assert) {
   });
 });
 
-test("02 - Routing - 07 - Should link to edit route", function (assert) {
+test("02 - Routing - 07 - Should link to edit route", assert => {
   assert.expect(4);
 
   visit('/comics/akira');
@@ -142,7 +142,7 @@ test("02 - Routing - 07 - Should link to edit route", function (assert) {
   });
 });
 
-test("02 - Routing - 08 - Should display create route", function (assert) {
+test("02 - Routing - 08 - Should display create route", assert => {
   assert.expect(8);
 
   visit('/comics/create');
@@ -165,7 +165,7 @@ test("02 - Routing - 08 - Should display create route", function (assert) {
   });
 });
 
-test("02 - Routing - 09 - Should link to create route", function (assert) {
+test("02 - Routing - 09 - Should link to create route", assert => {
   assert.expect(5);
 
   visit('/comics');

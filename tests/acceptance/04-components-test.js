@@ -6,18 +6,15 @@ const originalDebug = Ember.Logger.debug;
 
 moduleForAcceptance('04 - Components Acceptance Tests', {
   beforeEach() {
-    window.confirm = function() {
-      return true;
-    };
+    window.confirm = () => true;
   }
 });
 
-test("04 - Components - 01 - Should log on index", function (assert) {
+test("04 - Components - 01 - Should log on index", assert => {
   assert.expect(5);
 
-  Ember.Logger.debug = function(){
-    const args = Array.prototype.slice.call(arguments);
-    assert.equal(args.join(' '), "akira - favorite: true");
+  Ember.Logger.debug = function() {
+    assert.equal([...arguments].join(' '), "akira - favorite: true");
     originalDebug(...arguments);
   };
 
@@ -36,12 +33,11 @@ test("04 - Components - 01 - Should log on index", function (assert) {
   });
 });
 
-test("04 - Components - 02 - Should log on edit", function (assert) {
+test("04 - Components - 02 - Should log on edit", assert => {
   assert.expect(5);
 
-  Ember.Logger.debug = function(){
-    const args = Array.prototype.slice.call(arguments);
-    assert.equal(args.join(' '), "akira - favorite: true");
+  Ember.Logger.debug = function() {
+    assert.equal([...arguments].join(' '), "akira - favorite: true");
     originalDebug(...arguments);
   };
 
@@ -60,30 +56,30 @@ test("04 - Components - 02 - Should log on edit", function (assert) {
   });
 });
 
-test("04 - Components - 03 - Image cover should fallback", function (assert) {
+test("04 - Components - 03 - Image cover should fallback", assert => {
   visit('/comics/create');
   andThen(() => {
     const done = assert.async();
-    Ember.run.later(function(){
+    Ember.run.later(() => {
       done();
       assert.equal(find(".cover").attr("src"), "/assets/images/comics/covers/default.jpg", "Fallback loaded");
     }, 100);
   });
 });
 
-test("04 - Components - 04 - Image cover should change if model changes", function (assert) {
+test("04 - Components - 04 - Image cover should change if model changes", assert => {
   visit('/comics/create');
   andThen(() => {
     const done = assert.async();
     
-    Ember.run.later(function(){
+    Ember.run.later(() => {
       done();
       assert.equal(find(".cover").attr("src"), "/assets/images/comics/covers/default.jpg", "Fallback loaded");
 
       fillIn(".comic form #title", 'Akira');
-      andThen(function() {
+      andThen(() => {
         const doneFillIn = assert.async();
-        Ember.run.later(function(){
+        Ember.run.later(() => {
           doneFillIn();
           assert.equal(find(".cover").attr("src"), "/assets/images/comics/covers/akira.jpg", "Cover updated");
         }, 100);

@@ -3,13 +3,11 @@ import moduleForAcceptance from '../helpers/module-for-acceptance';
 
 moduleForAcceptance('03 - Controller Acceptance Tests', {
   beforeEach() {
-    window.confirm = function() {
-      return true;
-    };
+    window.confirm = () => true;
   }
 });
 
-test("03 - Controller - 01 - Should save on edit submit", function (assert) {
+test("03 - Controller - 01 - Should save on edit submit", assert => {
   assert.expect(4);
 
   visit('/comics/akira/edit');
@@ -30,7 +28,7 @@ test("03 - Controller - 01 - Should save on edit submit", function (assert) {
   });
 });
 
-test("03 - Controller - 02 - Should cancel on edit reset", function (assert) {
+test("03 - Controller - 02 - Should cancel on edit reset", assert => {
   assert.expect(5);
 
   visit('/comics/akira/edit');
@@ -52,7 +50,7 @@ test("03 - Controller - 02 - Should cancel on edit reset", function (assert) {
   });
 });
 
-test("03 - Controller - 03 - Should save on create submit", function (assert) {
+test("03 - Controller - 03 - Should save on create submit", assert => {
   assert.expect(4);
 
   visit('/comics/create');
@@ -73,7 +71,7 @@ test("03 - Controller - 03 - Should save on create submit", function (assert) {
   });
 });
 
-test("03 - Controller - 04 - Should reinit list on create reset", function (assert) {
+test("03 - Controller - 04 - Should reinit list on create reset", assert => {
   assert.expect(4);
 
   visit('/comics/create');
@@ -94,7 +92,7 @@ test("03 - Controller - 04 - Should reinit list on create reset", function (asse
   });
 });
 
-test("03 - Controller - 05 - Should cancel edit on transition", function (assert) {
+test("03 - Controller - 05 - Should cancel edit on transition", assert => {
   assert.expect(5);
 
   visit('/comics/akira/edit');
@@ -116,7 +114,7 @@ test("03 - Controller - 05 - Should cancel edit on transition", function (assert
   });
 });
 
-test("03 - Controller - 06 - Should call willTransition on edit despite an old save", function (assert) {
+test("03 - Controller - 06 - Should call willTransition on edit despite an old save", assert => {
   assert.expect(5);
 
   visit('/comics/akira/edit');
@@ -149,10 +147,10 @@ test("03 - Controller - 06 - Should call willTransition on edit despite an old s
   });
 });
 
-test("03 - Controller - 07 - Should cancel edit after confirm true", function (assert) {
+test("03 - Controller - 07 - Should cancel edit after confirm true", assert => {
   assert.expect(6);
 
-  window.confirm = function() {
+  window.confirm = () => {
     assert.ok(true, "confirm called");
     return true;
   };
@@ -176,10 +174,10 @@ test("03 - Controller - 07 - Should cancel edit after confirm true", function (a
   });
 });
 
-test("03 - Controller - 08 - Should abort edit after confirm false", function (assert) {
+test("03 - Controller - 08 - Should abort edit after confirm false", assert => {
   assert.expect(6);
 
-  window.confirm = function() {
+  window.confirm = () => {
     assert.ok(true, "confirm called");
     return false;
   };
@@ -203,7 +201,7 @@ test("03 - Controller - 08 - Should abort edit after confirm false", function (a
   });
 });
 
-test("03 - Controller - 09 - Should cancel create on transition", function (assert) {
+test("03 - Controller - 09 - Should cancel create on transition", assert => {
   assert.expect(4);
 
   visit('/comics/create');
@@ -224,7 +222,7 @@ test("03 - Controller - 09 - Should cancel create on transition", function (asse
   });
 });
 
-test("03 - Controller - 10 - Should call willTransition on create despite an old save", function (assert) {
+test("03 - Controller - 10 - Should call willTransition on create despite an old save", assert => {
   assert.expect(4);
 
   visit('/comics/create');
@@ -256,10 +254,10 @@ test("03 - Controller - 10 - Should call willTransition on create despite an old
   });
 });
 
-test("03 - Controller - 11 - Should cancel create after confirm true", function (assert) {
+test("03 - Controller - 11 - Should cancel create after confirm true", assert => {
   assert.expect(5);
 
-  window.confirm = function() {
+  window.confirm = () => {
     assert.ok(true, "confirm called");
     return true;
   };
@@ -282,10 +280,10 @@ test("03 - Controller - 11 - Should cancel create after confirm true", function 
   });
 });
 
-test("03 - Controller - 12 - Should abort create after confirm false", function (assert) {
+test("03 - Controller - 12 - Should abort create after confirm false", assert => {
   assert.expect(6);
 
-  window.confirm = function() {
+  window.confirm = () => {
     assert.ok(true, "confirm called");
     return false;
   };
@@ -309,7 +307,7 @@ test("03 - Controller - 12 - Should abort create after confirm false", function 
   });
 });
 
-test("03 - Controller - 13 - Should filter", function (assert) {
+test("03 - Controller - 13 - Should filter", assert => {
   assert.expect(5);
 
   visit('/comics');
@@ -335,7 +333,7 @@ test("03 - Controller - 13 - Should filter", function (assert) {
   });
 });
 
-test("03 - Controller - 14 - Should sort", function (assert) {
+test("03 - Controller - 14 - Should sort", assert => {
   assert.expect(5);
 
   visit('/comics');

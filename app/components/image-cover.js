@@ -14,9 +14,7 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.$().on('error', () => {
-      return this.onError();
-    });
+    this.$().on('error', () => this.onError());
   },
 
   willDestroyElement(){

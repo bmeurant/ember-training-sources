@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default DS.DateTransform.extend({
 
-  deserialize: function (serialized) {
+  deserialize(serialized) {
     if (serialized) {
       return moment(serialized).format("MMMM YYYY");
     }
