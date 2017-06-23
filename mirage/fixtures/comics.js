@@ -3,7 +3,8 @@ const blackSad = {
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
   illustrator: 'Juanjo Guarnido',
-  publisher: 'Dargaud'
+  publisher: 'Dargaud',
+  albumIds: [1, 2, 3, 4, 5]
 };
 
 const calvinAndHobbes = {
