@@ -29,14 +29,11 @@ $theme-colors: map-merge((
 @import "ember-bootstrap/input-group";
 @import "ember-bootstrap/list-group";
 
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "font-awesome";
 
 /* ----- Mixins ----- */
 
 @mixin btn-icon {
-  @extend %fa-icon;
   padding: 0.25 * $font-size-base;
   line-height: 1 * $font-size-base;
   border: none;
@@ -205,19 +202,18 @@ input {
   .btn-sort {
     @extend .btn, .btn-secondary; 
     @extend .ml-2;
-    @extend %fa-icon;
 
     color: $body-bg;
     cursor: pointer;
 
     &.sort-asc:before {
-      @extend .fas;
-      content: fa-content($fa-var-chevron-down);
+      @include fa-icon();
+      content: $fa-var-chevron-down;
     }
 
     &.sort-desc:before {
-      @extend .fas;
-      content: fa-content($fa-var-chevron-up);
+      @include fa-icon();
+      content: $fa-var-chevron-up;
     }
   }
 }
@@ -261,13 +257,12 @@ input {
 
 .add-comic {
   @extend .btn, .btn-light;
-  @extend %fa-icon;
 
   display: block;
 
   &:before {
-    @extend .fas;
-    content: fa-content($fa-var-plus);
+    @include fa-icon();
+    content: $fa-var-plus;
   }
 }
 
@@ -285,7 +280,6 @@ input {
 
 .btn-fav {
   @extend .btn;
-  @extend %fa-icon;
 
   background-color: $body-bg;
   width: 100%;
@@ -294,14 +288,14 @@ input {
   font-size: 1.5 * $font-size-base;
 
   &:before {
-    @extend .fas;
-    content: fa-content($fa-var-star);
+    @include fa-icon();
+    content: $fa-var-star-o;
   }
 
   &.selected {
     &:before {
-      @extend .far;
-      content: fa-content($fa-var-star);
+      @include fa-icon();
+      content: $fa-var-star;
     }
   }
 }
@@ -323,11 +317,12 @@ input {
     .btn-edit {
       @extend .btn;
       @include btn-icon;
+
       background-color: $body-bg;
 
       &:before {
-        @extend .fas;
-        content: fa-content($fa-var-pencil-alt);
+        @include fa-icon();
+        content: $fa-var-pencil;
       }
 
       &:hover {
@@ -341,8 +336,8 @@ input {
       @include btn-icon;
 
       &:before {
-        @extend .fas;
-        content: fa-content($fa-var-check);
+        @include fa-icon();
+        content: $fa-var-check;
       }
     }
 
@@ -352,8 +347,8 @@ input {
       @include btn-icon;
 
       &:before {
-        @extend .far;
-        content: fa-content($fa-var-window-close);
+        @include fa-icon();
+        content: $fa-var-close;
       }
     }
   }
