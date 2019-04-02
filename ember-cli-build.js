@@ -1,4 +1,6 @@
 'use strict';
+const tildeImporter = require('node-sass-tilde-importer');
+
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
@@ -6,10 +8,13 @@ module.exports = function(defaults) {
     'ember-bootstrap': {
       'bootstrapVersion': 4,
       'importBootstrapFont': false,
-      'importBootstrapCSS': false
+      'importBootstrapCSS': true
     },
-    'ember-font-awesome': {
-      useScss: true
+    sassOptions: {
+      importer: tildeImporter,
+      includePaths: [
+        'node_modules/@fortawesome/fontawesome-free/scss'
+      ]
     }
   });
 
