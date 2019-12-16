@@ -16,5 +16,10 @@ export default BaseSerializer.extend(DS.EmbeddedRecordsMixin, {
       newHash = hash[0];
     } 
     return this._super(store, primaryModelClass, newHash, id, requestType);
+  },
+
+  serializeIntoHash(hash, type, record, options) {
+    this._super(hash, type, record, options);
+    hash['slug'] = record.record.get('slug');
   }
 });

@@ -1,28 +1,36 @@
-import Ember from 'ember';
 import { assign } from '@ember/polyfills';
+import { isArray } from '@ember/array';
 import DS from 'ember-data';
 
-// eslint-disable-next-line ember/no-ember-testing-in-module-scope
-export default Ember.testing ? DS.RESTSerializer : DS.RESTSerializer.extend({
-    serializeIntoHash(hash, typeClass, snapshot, options) {
-      assign(hash, this.serialize(snapshot, options));
-    },
+export default DS.RESTSerializer.extend({
+  serialize(record, options) {
+    options = options || {includeId: true};
+    return this._super(record, options);
+  },
 
-    normalizeSingleResponse(store, primaryModelClass, hash, id, requestType) {
-      let newHash = {};
-
-      if (!hash[primaryModelClass.modelName]) {
-        newHash[primaryModelClass.modelName] = hash;
+  normalizeResponse: function (store, type, payload, id, requestType) {
+    var content = isArray(payload) ? [] : {};
+    if (payload) {
+      if (payload.content) {
+        content = payload.content;
+        delete payload.content;
+      } else if (isArray(payload)) {
+        content = content.concat(payload);
+        payload = {};
       } else {
-        newHash = hash;
+        for (var key in payload) {
+          if (payload.hasOwnProperty(key)) {
+            content[key] = payload[key];
+            delete payload[key];
+          }
+        }
       }
-
-      return this._super(store, primaryModelClass, newHash, id, requestType);
-    },
-
-    normalizeArrayResponse(store, primaryModelClass, hash, id, requestType) {
-      let newHash = {};
-      newHash[primaryModelClass.modelName] = hash;
-      return this._super(store, primaryModelClass, newHash, id, requestType);
+      payload[type.modelName] = content;
     }
+    return this._super(store, type, payload, id, requestType);
+  },
+
+  serializeIntoHash(hash, type, record, options) {
+    assign(hash, this.serialize(record, options));
+  }
 });

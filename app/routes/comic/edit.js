@@ -4,7 +4,7 @@ export default Route.extend({
   actions: {
     save () {
       this.get('controller.model').save().then(() => {
-        this.transitionTo('comic');
+        this.transitionTo('comic', this.get('controller.model'));
       });
     },
     cancel () {
